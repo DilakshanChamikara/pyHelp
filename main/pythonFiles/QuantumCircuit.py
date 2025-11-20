@@ -1,5 +1,9 @@
 from qiskit import QuantumCircuit
 from qiskit.providers.basic_provider import BasicSimulator
+# Import the transpile module
+from qiskit import transpile
+# Define the backend AerSimulator
+from qiskit_aer import AerSimulator
 
 # Circuit 1
 circuit1 = QuantumCircuit(2, 2)
@@ -16,8 +20,25 @@ result = backend.run(circuit1, shots = n_shots).result()
 # Extract counts and probability distribution
 counts = result.get_counts()
 prob = { key : value/n_shots for key, value in counts.items()}
+print(" BASIC SIMULATION")
 print (" Counts: ", counts)
-print (" Probabilities: ", prob)
+print (" Probabilities: ", prob, "\n")
+
+# Using Aer
+backend = AerSimulator()
+# Transpile the circuit to a set of gates
+# compatible with the backend
+compiled_circuit = transpile(circuit1, backend)
+# Execute the circuit on the qasm simulator .
+n_shots = 1024 # default number of shots .
+job_sim = backend.run(compiled_circuit, shots = n_shots)
+# Extract Results
+result_sim = job_sim.result()
+counts = result_sim.get_counts(compiled_circuit)
+probs = {key:value/n_shots for key, value in counts.items()}
+print(" AER SIMULATION")
+print(" Counts ", counts)
+print(" Probabilities :", probs)
 
 # Circuit 2
 circuit2 = QuantumCircuit(3, 3)
