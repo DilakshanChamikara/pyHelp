@@ -41,7 +41,7 @@ service = QiskitRuntimeService(
 
 # QPUs
 backend_ibm_fez = service.backend("ibm_fez")
-backend_ibm_torino = service . backend ("ibm_torino")
+backend_ibm_torino = service.backend ("ibm_torino")
 
 # Transpile the circuit
 transpiled_circuit = transpile(circuit1, backend_ibm_fez)
