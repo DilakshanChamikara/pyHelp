@@ -17,9 +17,9 @@ from kivy.core.window import Window
 from kivy.uix.popup import Popup
 
 # Configuration
-MODEL_FILE = "../../modelFiles/diabetes_model.pkl"
-SCALER_FILE = "../../modelFiles/diabetes_scaler.pkl"
-DATASET_FILE = "../../dataFiles/dataset.csv"
+MODEL_FILE = "modelFiles/diabetes_model.pkl"
+SCALER_FILE = "modelFiles/diabetes_scaler.pkl"
+DATASET_FILE = "dataFiles/dataset.csv"
 
 # Dataset generation & training
 def synthesize_pima_like_dataset(n_samples=800, random_state=42):
